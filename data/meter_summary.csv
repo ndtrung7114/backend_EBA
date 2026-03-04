@@ -1,0 +1,16 @@
+meter,site,building_type,lat,lng,timezone,total_days,train_days,test_days
+Bear_education_Leonel,Bear,education,37.87190340000004,-122.26072860000008,US/Pacific,731,366,365
+Bear_public_Jocelyn,Bear,public,37.87190340000004,-122.26072860000008,US/Pacific,731,366,365
+Fox_education_Andre,Fox,education,33.42442530000004,-111.9281403999998,US/Mountain,731,366,365
+Fox_lodging_Alana,Fox,lodging,33.42442530000004,-111.9281403999998,US/Mountain,731,366,365
+Fox_office_Alice,Fox,office,33.42442530000004,-111.9281403999998,US/Mountain,731,366,365
+Hog_education_Beth,Hog,education,44.97878184783975,-93.2553976421019,US/Central,731,366,365
+Hog_lodging_Brian,Hog,lodging,44.97878184783975,-93.2553976421019,US/Central,731,366,365
+Hog_office_Alexis,Hog,office,44.97878184783975,-93.2553976421019,US/Central,731,366,365
+Lamb_education_Antonio,Lamb,education,51.49783804108846,-3.186245571244898,Europe/London,731,366,365
+Lamb_office_Bertha,Lamb,office,51.49783804108846,-3.186245571244898,Europe/London,731,366,365
+Peacock_education_Anita,Peacock,education,40.349999999999966,-74.69999999999995,US/Eastern,731,366,365
+Peacock_office_Annie,Peacock,office,40.349999999999966,-74.69999999999995,US/Eastern,731,366,365
+Robin_education_Audrea,Robin,education,51.51878965384613,-0.1345562307692307,Europe/London,731,366,365
+Robin_office_Addie,Robin,office,51.51878965384613,-0.1345562307692307,Europe/London,731,366,365
+Wolf_education_Bobby,Wolf,education,53.34979999999997,6.2603,Europe/Dublin,731,366,365

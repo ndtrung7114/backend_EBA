@@ -184,14 +184,14 @@ def run_analysis(req: AnalysisRequest):
     coef_info = get_coefficients(pipeline, feat_cols)
     m_info = get_model_info(pipeline)
 
-    # ── Savings: Baseline Actual vs Reporting Actual ──
+    # ── Savings: Baseline Actual vs Reporting Predicted ──
     bl_total_actual = float(df_baseline["daily_kwh"].sum())
-    rp_total_actual = float(np.sum(y_report))
-    total_savings = bl_total_actual - rp_total_actual
+    rp_total_predicted = float(np.sum(y_pred_report))
+    total_savings = bl_total_actual - rp_total_predicted
     savings_pct = total_savings / bl_total_actual * 100 if bl_total_actual else 0
     savings = {
         "baseline_total_kwh": round(bl_total_actual, 0),
-        "reporting_total_kwh": round(rp_total_actual, 0),
+        "reporting_total_kwh": round(rp_total_predicted, 0),
         "total_savings_kwh": round(total_savings, 0),
         "savings_pct": round(savings_pct, 2),
     }
@@ -327,11 +327,14 @@ def run_analysis(req: AnalysisRequest):
         monthly_contributions=monthly_contribs,
     )
 
-    # ── Year-over-Year: Baseline Actual vs Reporting Actual ──
+    # ── Year-over-Year: Baseline Actual vs Reporting Predicted ──
     bl_monthly = df_baseline.resample("ME")["daily_kwh"].sum().reset_index()
     bl_monthly["month_num"] = bl_monthly["date"].dt.month
 
-    rp_monthly = df_report.resample("ME")["daily_kwh"].sum().reset_index()
+    # Use model-predicted values for reporting period
+    df_report_pred = df_report.copy()
+    df_report_pred["predicted_kwh"] = y_pred_report
+    rp_monthly = df_report_pred.resample("ME")["predicted_kwh"].sum().reset_index()
     rp_monthly["month_num"] = rp_monthly["date"].dt.month
 
     month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -339,7 +342,7 @@ def run_analysis(req: AnalysisRequest):
     yoy_months = []
     for m in range(1, 13):
         bl_val = bl_monthly[bl_monthly["month_num"] == m]["daily_kwh"].sum()
-        rp_val = rp_monthly[rp_monthly["month_num"] == m]["daily_kwh"].sum()
+        rp_val = rp_monthly[rp_monthly["month_num"] == m]["predicted_kwh"].sum()
 
         bl_v = round(float(bl_val), 0) if bl_val > 0 else None
         rp_v = round(float(rp_val), 0) if rp_val > 0 else None
@@ -351,7 +354,7 @@ def run_analysis(req: AnalysisRequest):
             month=month_names[m - 1],
             month_num=m,
             baseline_actual=bl_v,
-            reporting_actual=rp_v,
+            reporting_predicted=rp_v,
             savings_kwh=sav,
             savings_pct=sav_pct,
         ))
@@ -359,21 +362,22 @@ def run_analysis(req: AnalysisRequest):
     # Totals
     yoy_totals = {
         "baseline_actual": round(bl_total_actual, 0),
-        "reporting_actual": round(rp_total_actual, 0),
+        "reporting_predicted": round(rp_total_predicted, 0),
         "savings_kwh": round(total_savings, 0),
         "savings_pct": round(savings_pct, 1),
     }
 
     yoy_result = YoYResult(months=yoy_months, totals=yoy_totals)
 
-    # ── Monthly Savings: Baseline Actual vs Reporting Actual by month ──
+    # ── Monthly Savings: Baseline Actual vs Reporting Predicted by month ──
     bl_month_agg = df_baseline.copy()
     bl_month_agg["month_num"] = bl_month_agg.index.month
     bl_month_agg = bl_month_agg.groupby("month_num")["daily_kwh"].sum()
 
     rp_month_agg = df_report.copy()
+    rp_month_agg["predicted_kwh"] = y_pred_report
     rp_month_agg["month_num"] = rp_month_agg.index.month
-    rp_month_agg = rp_month_agg.groupby("month_num")["daily_kwh"].sum()
+    rp_month_agg = rp_month_agg.groupby("month_num")["predicted_kwh"].sum()
 
     month_names_short = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -387,7 +391,7 @@ def run_analysis(req: AnalysisRequest):
         sav_pct = sav / bl_kwh * 100 if bl_kwh else 0
         monthly_savings_rows.append(MonthlySavingsRow(
             month=month_names_short[m - 1],
-            actual=round(rp_kwh, 0),
+            predicted=round(rp_kwh, 0),
             baseline=round(bl_kwh, 0),
             savings=round(sav, 0),
             savings_pct=round(sav_pct, 1),

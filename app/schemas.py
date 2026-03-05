@@ -116,7 +116,7 @@ class YoYMonth(BaseModel):
     month: str
     month_num: int
     baseline_actual: Optional[float] = None
-    reporting_actual: Optional[float] = None
+    reporting_predicted: Optional[float] = None
     savings_kwh: Optional[float] = None
     savings_pct: Optional[float] = None
 
@@ -128,7 +128,7 @@ class YoYResult(BaseModel):
 
 class MonthlySavingsRow(BaseModel):
     month: str
-    actual: float
+    predicted: float
     baseline: float
     savings: float
     savings_pct: float

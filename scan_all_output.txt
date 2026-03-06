@@ -1,0 +1,199 @@
+================================================================================
+SAINT-GOBAIN (SG) — Scanning ALL equipment
+================================================================================
+Periods: ['Annual Y2→Y3', 'Semi H2→H1 2024', 'AllHist→2024']
+
+Total SG equipment: 62
+Prepared all 62 SG equipment DataFrames
+
+
+--------------------------------------------------------------------------------
+SG RANKING (by best R² test across 3 periods):
+--------------------------------------------------------------------------------
+  # 1  R²=   0.5894  period=Annual Y2→Y3          α=  1.526418  feats=18.0  code=QPouxaIvOkoiiUfrjgyq6+xMkGmnoM9RKw==
+  # 2  R²=   0.4549  period=AllHist→2024          α=  0.051795  feats=20.0  code=Mr8FmI8eCkoi70wFjm/s6gPmvEVLjYV9VA==
+  # 3  R²=   0.3343  period=Semi H2→H1 2024       α=  0.159986  feats=6.0  code=Mr906J5nel/L4jvvzXgkeUq8NJZAtws=
+  # 4  R²=   0.3318  period=AllHist→2024          α=  0.212095  feats=20.0  code=S/cm3ackL0oiYPqkl4j8LG0SOoWdeWbOTg==
+  # 5  R²=   0.2937  period=Semi H2→H1 2024       α=  0.372759  feats=17.0  code=SMYG+f/tGwSDIHuNOAV1vx7GxyJq
+  # 6  R²=   0.2830  period=Semi H2→H1 2024       α=  0.039069  feats=20.0  code=Mr926J0CZVYyuBA8k87fdwL4CPwxfi9U
+  # 7  R²=   0.2760  period=AllHist→2024          α=     0.001  feats=21.0  code=QsJ2m/8YHYlxuMbcrrvmRZJoWJTq
+  # 8  R²=   0.2697  period=Semi H2→H1 2024       α=  0.120679  feats=18.0  code=QsJ2mI0NHCSRYQgbhDnqVynE3SuqqvQY
+  # 9  R²=   0.2427  period=AllHist→2024          α=  1.526418  feats=21.0  code=QsJ0/ZnMQnwvDD/ogGZ/00Ij1v+Q
+  #10  R²=   0.2008  period=AllHist→2024          α=  0.039069  feats=21.0  code=UNUFhIsaAVbeAsqaEkjD4t3XRhlJwcE4
+  #11  R²=   0.1491  period=Semi H2→H1 2024       α=  0.159986  feats=7.0  code=Mr8FmIsGAEoi272OKl9uiacSeIfTsDD5yg==
+  #12  R²=   0.1362  period=AllHist→2024          α=  0.003089  feats=21.0  code=UNUFhI8ae1QOd4JRzFFDGuZXlEXD4Dlp
+  #13  R²=   0.1201  period=AllHist→2024          α=     0.001  feats=21.0  code=Mr9z6J5nedi7YsfLNZY7qNbV5+wO/hc=
+  #14  R²=   0.1068  period=Semi H2→H1 2024       α=     0.001  feats=21.0  code=Mr8FmIsGAEohPxiMfwNiE95oyMdTVHupcA==
+  #15  R²=   0.0843  period=Semi H2→H1 2024       α=  0.001326  feats=21.0  code=Mr906J4IZVZ+0vI4gWGGBoQ55q5YGZ/q
+  #16  R²=   0.0604  period=Semi H2→H1 2024       α=   0.09103  feats=18.0  code=QPoyyqYvJkoiLVTsCtU5t+TkEpxG8JWrQQ==
+  #17  R²=   0.0406  period=AllHist→2024          α=  4.714866  feats=17.0  code=QsJ1mP1nenJW8f4nY5FgT9Qi/ZJhxJI=
+  #18  R²=   0.0353  period=Semi H2→H1 2024       α=  0.051795  feats=21.0  code=Mr8FmI8aAEoim5wjgm5dtVxkzvgxyBB6kQ==
+  #19  R²=   0.0201  period=Semi H2→H1 2024       α=  0.068665  feats=20.0  code=Mr916J4IZVZ7BduovuHaP7RQZCvg5bBs
+  #20  R²=   0.0160  period=Semi H2→H1 2024       α=  0.494171  feats=12.0  code=Mr916JoIZVCg71ZMAZXWy6Q1pEV8UiaT
+  #21  R²=   0.0144  period=Semi H2→H1 2024       α=  0.212095  feats=7.0  code=Mr916JoIZVKs7M/b9oZ4mIRKpP0OMvWW
+  #22  R²=   0.0078  period=AllHist→2024          α=  0.868511  feats=6.0  code=Mr926J4IZVZ1fKEY/mE+dOTq46Up4cDm
+  #23  R²=   0.0026  period=Annual Y2→Y3          α=  0.655129  feats=18.0  code=Mr916JoIZVYijNcxeCzlskd1RVy+Vs1QFQ==
+  #24  R²=   0.0000  period=Semi H2→H1 2024       α=    1000.0  feats=0.0  code=Mr916JoIZVYjbrQwtOceO5Bc1WM+CvRgfA==
+  #25  R²=  -0.0000  period=Annual Y2→Y3          α=    1000.0  feats=0.0  code=Mr926JoIZVCuliz8QRUygPSPI8u1VlYZ
+  #26  R²=   0.0000  period=AllHist→2024          α=    1000.0  feats=0.0  code=Mr926JoIZVNFlHmgTY9L+kTPoy/+Buye
+  #27  R²=   0.0000  period=AllHist→2024          α=  0.281177  feats=0.0  code=Mr8FmI8aZVVY40cbPdMU9HYYIgNnpcjj
+  #28  R²=  -0.0002  period=Annual Y2→Y3          α=  2.682696  feats=9.0  code=Mr916JoIZVS46GVj77KKbeTLpTWYk4CZ
+  #29  R²=  -0.0008  period=AllHist→2024          α=  0.120679  feats=7.0  code=Mr926JoIZV9tnSzQf+auEIXNoL7TRAaA
+  #30  R²=  -0.0015  period=Annual Y2→Y3          α=138.949549  feats=13.0  code=UNUFhI8ae1Xpdk6aN9iUM3ZoFBn60FDr
+  #31  R²=  -0.0019  period=Annual Y2→Y3          α=    1000.0  feats=0.0  code=QsJ0mON79zG0L/z65T0o7l/nGv33Wg==
+  #32  R²=  -0.0029  period=Annual Y2→Y3          α=  0.001758  feats=20.0  code=Mr916JoIZVNL7QMQDQ+vsRR1JKE3ApwU
+  #33  R²=  -0.0034  period=Annual Y2→Y3          α=  0.212095  feats=6.0  code=Mr8FmI8GAEoiFFOpdvkud6ZinEZ1uiYaOg==
+  #34  R²=  -0.0070  period=Annual Y2→Y3          α=   0.00233  feats=17.0  code=Mr926JoIZVKilbVrtgac09TwI3PHNoUc
+  #35  R²=  -0.0074  period=Annual Y2→Y3          α=   0.09103  feats=13.0  code=Mr926JoIZVa6koZEWCHAdZQOIgMj9yMW
+  #36  R²=  -0.0084  period=Annual Y2→Y3          α=  0.281177  feats=13.0  code=Mr926IJne7Yjjndq2BPAdKehdOGxwVE=
+  #37  R²=  -0.0089  period=Annual Y2→Y3          α=    1000.0  feats=0.0  code=Mr916JoIZV9j5FZgP2ZKW9V3JzAaQHYK
+  #38  R²=  -0.0100  period=Annual Y2→Y3          α=  0.012649  feats=8.0  code=Mr8FmIsaAEoiVHIE3sgdS10UKjmXwgaZYQ==
+  #39  R²=  -0.0110  period=Annual Y2→Y3          α=     0.001  feats=21.0  code=Mr8FmI8eCkohC+kH2zPgcHqcDAXLac4t7g==
+  #40  R²=  -0.0120  period=Annual Y2→Y3          α=  0.120679  feats=21.0  code=Mr8FmI8aAEohfzkh1zJRLyUefrixLFsqKw==
+  #41  R²=  -0.0157  period=Annual Y2→Y3          α=  8.286428  feats=19.0  code=UNUFhI8ae1HxcX212f/IlTaWFWkeEfbh
+  #42  R²=  -0.0170  period=Annual Y2→Y3          α=     0.001  feats=21.0  code=Mr926JoIZVS2kR/TrzJuJrRxIrtRl/AT
+  #43  R²=  -0.0194  period=Annual Y2→Y3          α=  0.494171  feats=17.0  code=Mr8FmI8eCkog6YoGF/gb+a21nDpLNfcdhw==
+  #44  R²=  -0.0201  period=Annual Y2→Y3          α=     0.001  feats=21.0  code=Mr8FmI8eCkonAKMDcYv5RIhpbITKoViMmw==
+  #45  R²=  -0.0249  period=Annual Y2→Y3          α=  0.068665  feats=10.0  code=Mr926JoIZV6KnOAbhG95ORXyIOLqdG8C
+  #46  R²=  -0.0308  period=Annual Y2→Y3          α=    1000.0  feats=0.0  code=Mr926JoIZVFJl+A3upzlqWSwo5eMZj+b
+  #47  R²=  -0.0380  period=Semi H2→H1 2024       α=  0.212095  feats=6.0  code=YPoy0KE/ZVbigIqSDw4fgt6wk4YgfK8W
+  #48  R²=  -0.0386  period=AllHist→2024          α=   0.09103  feats=21.0  code=UNUFhIsaAVU1AJ/GHtK6mG2Xxv0CkXu/
+  #49  R²=  -0.0455  period=Annual Y2→Y3          α= 10.985411  feats=20.0  code=QsJ1mP/6/oq7SAa4AaAMeJsvleAQ
+  #50  R²=  -0.0778  period=Annual Y2→Y3          α=    1000.0  feats=0.0  code=Mr916JoIZVVf6amoFDtdRHT0JWmho+kb
+  #51  R²=  -0.0779  period=Annual Y2→Y3          α=    1000.0  feats=0.0  code=Mr926JoIZVVRkNMYVLu5DyROoudop5mR
+  #52  R²=  -0.1085  period=AllHist→2024          α=    1000.0  feats=0.0  code=QP0q2bwvOxR80pyXIs/LouYdKHzDGmDt1OIPBQ==
+  #53  R²=  -0.1206  period=Annual Y2→Y3          α=  0.212095  feats=11.0  code=Mr8FmI8aAEognVogG/mqpvI37ocxcGIaQg==
+  #54  R²=  -0.1376  period=AllHist→2024          α=    1000.0  feats=0.0  code=Mr916JoIZV6E5ZqrxO+dckVIp2wjcB+I
+  #55  R²=  -0.1466  period=Annual Y2→Y3          α=     0.001  feats=20.0  code=QsJ2mP/0h/ALCIZcSvC2/xXmkZCa
+  #56  R²=  -0.1790  period=Annual Y2→Y3          α=     0.001  feats=21.0  code=QP0q2bwvOxR80pyUXnWjskMffSDPgBmXZKKP4Q==
+  #57  R²=  -0.1994  period=Semi H2→H1 2024       α=  1.151395  feats=13.0  code=QsJ1mP1neewDrfK9GuvQD1TGtsLbQxw=
+  #58  R²=  -0.2508  period=Annual Y2→Y3          α=   0.00233  feats=20.0  code=UNUFhIsaAVTSAVMN5Vttsf2oRqE7oRI9
+  #59  R²=  -0.2676  period=Annual Y2→Y3          α=  4.714866  feats=21.0  code=UNUFhI8ae1YCdBvGO0LtScYolP2xgOps
+  #60  R²=  -0.2908  period=AllHist→2024          α=  0.068665  feats=21.0  code=UNUFhI8GeUNaKPwMG/KRZ3NyoXmceg4=
+  #61  R²=  -0.4979  period=AllHist→2024          α=    1000.0  feats=0.0  code=YPouxaIvOkohD+UZ0NeAfKVmlzaitET4OQ==
+
+============================================================
+SG SELECTED EQUIPMENT:
+============================================================
+  Top-1   R²=   0.5894  period=Annual Y2→Y3          CVRMSE=  30.6%  NMBE=  -1.4%  code=QPouxaIvOkoiiUfrjgyq6+xMkGmnoM9RKw==
+  Top-2   R²=   0.4549  period=AllHist→2024          CVRMSE=  44.7%  NMBE=   9.2%  code=Mr8FmI8eCkoi70wFjm/s6gPmvEVLjYV9VA==
+  Top-3   R²=   0.3343  period=Semi H2→H1 2024       CVRMSE=  35.3%  NMBE=  -9.3%  code=Mr906J5nel/L4jvvzXgkeUq8NJZAtws=
+  Top-4   R²=   0.3318  period=AllHist→2024          CVRMSE=  54.4%  NMBE=   7.5%  code=S/cm3ackL0oiYPqkl4j8LG0SOoWdeWbOTg==
+  Mid-1   R²=  -0.0015  period=Annual Y2→Y3          CVRMSE=  53.3%  NMBE=   2.1%  code=UNUFhI8ae1Xpdk6aN9iUM3ZoFBn60FDr
+  Mid-2   R²=  -0.0019  period=Annual Y2→Y3          CVRMSE= 175.0%  NMBE=   7.6%  code=QsJ0mON79zG0L/z65T0o7l/nGv33Wg==
+  Mid-3   R²=  -0.0029  period=Annual Y2→Y3          CVRMSE= 294.1%  NMBE= -27.9%  code=Mr916JoIZVNL7QMQDQ+vsRR1JKE3ApwU
+  Bot-1   R²=  -0.2676  period=Annual Y2→Y3          CVRMSE= 117.7%  NMBE=  18.8%  code=UNUFhI8ae1YCdBvGO0LtScYolP2xgOps
+  Bot-2   R²=  -0.2908  period=AllHist→2024          CVRMSE=  48.3%  NMBE=  28.2%  code=UNUFhI8GeUNaKPwMG/KRZ3NyoXmceg4=
+  Bot-3   R²=  -0.4979  period=AllHist→2024          CVRMSE= 103.7%  NMBE=  59.8%  code=YPouxaIvOkohD+UZ0NeAfKVmlzaitET4OQ==
+
+================================================================================
+ECD / EC8469 — Scanning ALL equipment
+================================================================================
+Periods: ['H1→H2 2025', '8mo→5mo', 'Apr-Sep→Oct-Feb']
+
+Total ECD equipment: 87 (skipped 12 with zero/bad data)
+
+
+--------------------------------------------------------------------------------
+ECD RANKING (by best R² test across 3 periods):
+--------------------------------------------------------------------------------
+  # 1  R²=   0.6336  period=Apr-Sep→Oct-Feb       α=  0.868511  feats=20.0  code=a5f3e9e815ee1756279bdccabde64b038652dfbd
+  # 2  R²=   0.5931  period=8mo→5mo               α=  0.007197  feats=20.0  code=b3c1f0af7dfe91a916e3cd04a068accb47592d35
+  # 3  R²=   0.5832  period=Apr-Sep→Oct-Feb       α=  1.526418  feats=14.0  code=fe7251e333d36e468a93d28d6af637304301c27d
+  # 4  R²=   0.5598  period=Apr-Sep→Oct-Feb       α=  2.682696  feats=11.0  code=0e695d012b29168cd7fdfe28aedf2776369d4457
+  # 5  R²=   0.5362  period=8mo→5mo               α=  0.001326  feats=21.0  code=37e7971693e8f03d0a7379aa7b884b6091a985e4
+  # 6  R²=   0.4319  period=Apr-Sep→Oct-Feb       α=  1.526418  feats=13.0  code=6eb4193f9bb2be5b81ce0d152e9a09080c6c4690
+  # 7  R²=   0.3757  period=8mo→5mo               α=  0.494171  feats=21.0  code=eebd3bf70f9a9ae88023093a305bbbd48866113a
+  # 8  R²=   0.3359  period=Apr-Sep→Oct-Feb       α=  0.868511  feats=20.0  code=c741ead900af14e41fd93ad341120ef486626832
+  # 9  R²=   0.3008  period=H1→H2 2025            α=  0.051795  feats=12.0  code=fe3f3dd611cf0f4f7d380970b21f21ad85c0331f
+  #10  R²=   0.2996  period=H1→H2 2025            α=  1.526418  feats=8.0  code=06df53341048dd2bad65dc046edf71cb920e33f0
+  #11  R²=   0.2803  period=H1→H2 2025            α=  0.868511  feats=6.0  code=f0b3224c448327d7cae09bfd641aa0f3ab76319e
+  #12  R²=   0.2430  period=H1→H2 2025            α=  1.151395  feats=21.0  code=9792671c468bf50985778c6ecdb02409f20be102
+  #13  R²=   0.2098  period=H1→H2 2025            α=   2.02359  feats=12.0  code=f7530f5f0dd7be9a3ef3e2aa8d245bed49f704a2
+  #14  R²=   0.2008  period=H1→H2 2025            α=  0.655129  feats=21.0  code=27784fe788f0a5d5fb66e54c254b490001e8edb5
+  #15  R²=   0.1937  period=H1→H2 2025            α=  2.682696  feats=13.0  code=1b15e1f76f9e2882e3fd52222bcb1ce4198e1d95
+  #16  R²=   0.1892  period=H1→H2 2025            α=   2.02359  feats=10.0  code=41efd5577e0f03b3d37316faff74fbf22be47d41
+  #17  R²=   0.1797  period=H1→H2 2025            α=  1.526418  feats=9.0  code=9aa6627f682e8a2cf4a5f51e3edf0938c58d7e8b
+  #18  R²=   0.1699  period=Apr-Sep→Oct-Feb       α=  0.494171  feats=4.0  code=c74ab8448e44008872515b1590d23af05f79befd
+  #19  R²=   0.1440  period=8mo→5mo               α=  0.001326  feats=21.0  code=7dd1d39fdc5dca5ab15e95526c6f11c139e20a3b
+  #20  R²=   0.1417  period=Apr-Sep→Oct-Feb       α=  1.526418  feats=12.0  code=7a4acc0a7203fef13ac1c326b364ca7d61dfbce5
+  #21  R²=   0.1219  period=Apr-Sep→Oct-Feb       α=  0.494171  feats=19.0  code=e987d39f6676df81bfaea4c91ab7ad0bb7898bea
+  #22  R²=   0.1084  period=H1→H2 2025            α=  0.120679  feats=10.0  code=0e19f704ebdc23040972dc144eed1c0f80c6d22e
+  #23  R²=   0.0814  period=8mo→5mo               α=     0.001  feats=21.0  code=66da2c375055c32c360cac42fa3f720c37c7d902
+  #24  R²=   0.0654  period=H1→H2 2025            α=  0.120679  feats=21.0  code=95a62af4053bc490b3665722b83a04bcad75dc56
+  #25  R²=   0.0506  period=8mo→5mo               α=  0.655129  feats=9.0  code=7585f9e8b64aa15a4909812dd312d55ad806ed14
+  #26  R²=   0.0362  period=8mo→5mo               α=   2.02359  feats=14.0  code=2d67f0bebce5ffff0d58374d05489d5dd76545e8
+  #27  R²=   0.0171  period=8mo→5mo               α=     0.001  feats=21.0  code=c0ca6df200d1c8f7c610a488453e50607aca2cff
+  #28  R²=   0.0161  period=Apr-Sep→Oct-Feb       α=  0.281177  feats=3.0  code=e3c65119f72dd456c47c3e34b652b5258d3451cd
+  #29  R²=   0.0046  period=Apr-Sep→Oct-Feb       α=  0.051795  feats=11.0  code=a01058ebafc16c9a798b01d41ecbe32ee2bbb717
+  #30  R²=   0.0038  period=H1→H2 2025            α=   0.09103  feats=11.0  code=af616c7b5f247865a87bf1e58fa0d2ceff57d913
+  #31  R²=   0.0031  period=8mo→5mo               α=  0.281177  feats=7.0  code=3ffee8dc18f3d9b7e7eb1b192f81900842cd20fd
+  #32  R²=   0.0022  period=8mo→5mo               α=  1.526418  feats=3.0  code=60ee639d12235d49655ffb17a54686b3f42ec3a1
+  #33  R²=   0.0008  period=Apr-Sep→Oct-Feb       α=  0.372759  feats=9.0  code=f3ab84840d8c520ea7c325c7e0908b7099d9e7fc
+  #34  R²=  -0.0000  period=H1→H2 2025            α=    1000.0  feats=0.0  code=a2cf069bc9be017aa1f1032536adca0f014cf9c3
+  #35  R²=  -0.0004  period=8mo→5mo               α=    1000.0  feats=0.0  code=2e3d534b57ea5b32bf9210434c9180cbf3495fbb
+  #36  R²=  -0.0006  period=H1→H2 2025            α=  0.007197  feats=0.0  code=48457b799fca6fde796392b134d47ad0c4232c69
+  #37  R²=  -0.0011  period=Apr-Sep→Oct-Feb       α=  1.526418  feats=20.0  code=94976f0e3746028380c19e31701afbf044c7a15c
+  #38  R²=  -0.0019  period=Apr-Sep→Oct-Feb       α=    1000.0  feats=0.0  code=0b719a57619285afe99c4fab3b29cbc64fae717f
+  #39  R²=  -0.0024  period=8mo→5mo               α=    1000.0  feats=0.0  code=c2d5342f494662fc25926fa75aa51d66cd2340e4
+  #40  R²=  -0.0030  period=H1→H2 2025            α=  4.714866  feats=18.0  code=fab4a83b7fddff86136820b1c06ba6430374c096
+  #41  R²=  -0.0035  period=Apr-Sep→Oct-Feb       α=    1000.0  feats=0.0  code=d2d7289925559aacfe8c8ad732cc9347071bb11e
+  #42  R²=  -0.0036  period=H1→H2 2025            α=  0.120679  feats=11.0  code=42aa979c14d145eecfe58f94b9879357bb1ee208
+  #43  R²=  -0.0055  period=H1→H2 2025            α=  1.526418  feats=6.0  code=f1eadb48f3e119ec115fdeb659eaf32e1882761d
+  #44  R²=  -0.0063  period=H1→H2 2025            α=   0.00233  feats=1.0  code=3bdec6d7197a91900ff81511c2b8e13be79497f6
+  #45  R²=  -0.0069  period=H1→H2 2025            α=    1000.0  feats=0.0  code=73dc7c95dd74bf0c9aaa5e88bfe777ef05b0c86a
+  #46  R²=  -0.0071  period=Apr-Sep→Oct-Feb       α=    1000.0  feats=0.0  code=60bde096b9cd13094ca6a7c8df6af63870ea5c22
+  #47  R²=  -0.0124  period=Apr-Sep→Oct-Feb       α=     0.001  feats=17.0  code=927f07a210ae9f5451240a58591af946d820a769
+  #48  R²=  -0.0144  period=H1→H2 2025            α=  0.039069  feats=0.0  code=ed8c600d70262f56a9e5118cf3b745a0df27f5d6
+  #49  R²=  -0.0225  period=Apr-Sep→Oct-Feb       α=  0.868511  feats=10.0  code=a79662734c4a7c3939189b2bbc4d99384a5a8ea0
+  #50  R²=  -0.0226  period=Apr-Sep→Oct-Feb       α=568.986603  feats=0.0  code=ac77142ab83b60470fc1cd494471a6caf0a29dda
+  #51  R²=  -0.0269  period=8mo→5mo               α=  0.494171  feats=21.0  code=695f49b84fe94bdf7bb0627e155607689cf66229
+  #52  R²=  -0.0269  period=H1→H2 2025            α=    1000.0  feats=0.0  code=a4ba8761bada2f8b96c00a54839dcd48dfbce5d3
+  #53  R²=  -0.0324  period=8mo→5mo               α=  0.159986  feats=20.0  code=6a74cb0a060b0cfe95452513df0cc57923ffdf13
+  #54  R²=  -0.0402  period=Apr-Sep→Oct-Feb       α=   0.02223  feats=11.0  code=05832167d378b1bb869086bd3e49423c87d69325
+  #55  R²=  -0.0459  period=H1→H2 2025            α=  4.714866  feats=18.0  code=7abaa4b095caff62a1087e928efe4f62af4cf7f6
+  #56  R²=  -0.0549  period=H1→H2 2025            α=  1.526418  feats=13.0  code=13ab5ddc8630d3658a15f6b77527a2455a730eca
+  #57  R²=  -0.0683  period=8mo→5mo               α=     0.001  feats=21.0  code=5218048524c34623de3e3414982499ec42dec3a7
+  #58  R²=  -0.0717  period=Apr-Sep→Oct-Feb       α=  0.372759  feats=14.0  code=dc28177ccde8d088b6a7c20597dee95723403d02
+  #59  R²=  -0.0876  period=8mo→5mo               α=  0.494171  feats=21.0  code=85e160168af01c93f25941068e4c9cfe071db7ed
+  #60  R²=  -0.1144  period=8mo→5mo               α=  0.159986  feats=20.0  code=2b66f775e45308dc958eb6a82f53a76e564b3db1
+  #61  R²=  -0.1387  period=Apr-Sep→Oct-Feb       α=   3.55648  feats=17.0  code=dd4569416ee60170254e09b87475584eb8bb8c59
+  #62  R²=  -0.1892  period=8mo→5mo               α=  1.526418  feats=9.0  code=fb6099dcb0f206742cecdd0ad1350186ca6848fc
+  #63  R²=  -0.1901  period=8mo→5mo               α=  1.151395  feats=21.0  code=96249aa3ac920e90b90c545fe23754dbfc47de0a
+  #64  R²=  -0.2193  period=H1→H2 2025            α=  1.526418  feats=20.0  code=6050ecf0354c95b24a0a949d37beed59a3080c22
+  #65  R²=  -0.3101  period=H1→H2 2025            α=   0.09103  feats=21.0  code=3b40b94b91769395f0021f6eab861336758351c8
+  #66  R²=  -0.3130  period=H1→H2 2025            α=  0.372759  feats=21.0  code=422b2ef3dc94a8583fa29e604e660512cac92526
+  #67  R²=  -0.3197  period=Apr-Sep→Oct-Feb       α=   0.02223  feats=17.0  code=ffc4ff08e4eb106ee7472fc4f150b12d561c4bc6
+  #68  R²=  -0.3590  period=H1→H2 2025            α=  0.029471  feats=7.0  code=52467da471535aeb92ce4803f3ce377581297e42
+  #69  R²=  -0.3693  period=Apr-Sep→Oct-Feb       α=  0.159986  feats=21.0  code=3cc12eb2c3daa8f9a9535891ab317fd77e654502
+  #70  R²=  -0.3783  period=H1→H2 2025            α=  1.151395  feats=20.0  code=71513a88dc95ea941e861139bcd99f819f5ff453
+  #71  R²=  -0.4730  period=H1→H2 2025            α=  0.655129  feats=16.0  code=40f4de4301f41d686c5d49305c2d68e62bab9bc5
+  #72  R²=  -0.6050  period=8mo→5mo               α=    1000.0  feats=0.0  code=4dd658a877c4bd4a78f1cfd8cae0bf50ca9bdde8
+  #73  R²=  -0.6166  period=8mo→5mo               α=  0.212095  feats=21.0  code=c1b4159dee90e3e05aacfae5696056cb02d69221
+  #74  R²=  -0.7729  period=H1→H2 2025            α=  2.682696  feats=21.0  code=920285791f1733a28b7170d9ae40aab8a896f315
+  #75  R²=  -1.2321  period=H1→H2 2025            α=  1.526418  feats=15.0  code=3efd2edbf82fb3b95c0b49a43e5efaa4a8718a11
+  #76  R²=  -1.4106  period=8mo→5mo               α=  1.151395  feats=14.0  code=5111d662ce8a37093e76fdda3973fda6c4aa1d09
+  #77  R²=  -1.5095  period=8mo→5mo               α=    1000.0  feats=0.0  code=2237d7b1c20b2c95dc2679febf4d73a370f7200a
+  #78  R²=  -1.9779  period=H1→H2 2025            α=  0.212095  feats=21.0  code=d0cf5fa00246c3d1da66c0bf8ee464da256b146a
+  #79  R²=  -2.7883  period=H1→H2 2025            α=  0.655129  feats=16.0  code=d74c6a1587806b5cf1333ac3c211c71d382a2fb0
+  #80  R²=  -3.2990  period=Apr-Sep→Oct-Feb       α=  6.250552  feats=11.0  code=e09cc78dee560fb8ed19d1fba22f38a7482ef46a
+  #81  R²=  -4.3165  period=8mo→5mo               α=    1000.0  feats=0.0  code=98f7b6b5f30423715ad6218123db57a76cf11deb
+
+============================================================
+ECD SELECTED EQUIPMENT:
+============================================================
+  Top-1   R²=   0.6336  period=Apr-Sep→Oct-Feb       CVRMSE=  11.9%  NMBE=   0.1%  code=a5f3e9e815ee1756279bdccabde64b038652dfbd470da49fa0
+  Top-2   R²=   0.5931  period=8mo→5mo               CVRMSE=  12.4%  NMBE=  -0.6%  code=b3c1f0af7dfe91a916e3cd04a068accb47592d3589d15a6846
+  Top-3   R²=   0.5832  period=Apr-Sep→Oct-Feb       CVRMSE=  12.0%  NMBE=  -3.8%  code=fe7251e333d36e468a93d28d6af637304301c27d4ed8a09c5e
+  Top-4   R²=   0.5598  period=Apr-Sep→Oct-Feb       CVRMSE=  12.9%  NMBE=  -2.2%  code=0e695d012b29168cd7fdfe28aedf2776369d445773524ef966
+  Mid-1   R²=  -0.0030  period=H1→H2 2025            CVRMSE=  23.1%  NMBE=  -0.8%  code=fab4a83b7fddff86136820b1c06ba6430374c096f6f6bd2aad
+  Mid-2   R²=  -0.0035  period=Apr-Sep→Oct-Feb       CVRMSE=  40.2%  NMBE=   2.4%  code=d2d7289925559aacfe8c8ad732cc9347071bb11eeabfcdc13d
+  Mid-3   R²=  -0.0036  period=H1→H2 2025            CVRMSE=  18.8%  NMBE=   1.0%  code=42aa979c14d145eecfe58f94b9879357bb1ee208bd04c0156e
+  Bot-1   R²=  -2.7883  period=H1→H2 2025            CVRMSE=  15.8%  NMBE= -13.6%  code=d74c6a1587806b5cf1333ac3c211c71d382a2fb0ddc97a0eff
+  Bot-2   R²=  -3.2990  period=Apr-Sep→Oct-Feb       CVRMSE= 139.1%  NMBE=-114.5%  code=e09cc78dee560fb8ed19d1fba22f38a7482ef46ac5cce2e694
+  Bot-3   R²=  -4.3165  period=8mo→5mo               CVRMSE=  66.7%  NMBE= -60.1%  code=98f7b6b5f30423715ad6218123db57a76cf11debfef04185da
+
+================================================================================
+DONE in 560s (9.3 min)
+================================================================================
+Saved: sg_all_scan.csv, ecd_all_scan.csv

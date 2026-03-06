@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from fastapi import APIRouter, HTTPException
 
-from app.config import ALL_FEATURES, WEATHER_FEATURES, TIME_FEATURES
+from app.config import ALL_FEATURES, WEATHER_FEATURES, TIME_FEATURES, DATA_GROUPS
 from app.loader import load_meter_summary, load_meter_combined
 from app.features import remove_outliers_iqr, get_available_features
 from app.regression import (
@@ -32,22 +32,21 @@ router = APIRouter(prefix="/api", tags=["analysis"])
 
 @router.get("/meters", response_model=MeterListResponse)
 def list_meters():
-    """Return all available meters with metadata."""
+    """Return all available meters with metadata, grouped."""
     summary = load_meter_summary()
     meters = []
     for _, row in summary.iterrows():
         meters.append(MeterInfo(
             meter=row["meter"],
-            site=row["site"],
-            building_type=row["building_type"],
-            lat=row.get("lat"),
-            lng=row.get("lng"),
-            timezone=row.get("timezone"),
+            group=str(row.get("group", "Building Genome")),
+            site=str(row["site"]),
+            building_type=str(row["building_type"]),
             total_days=int(row.get("total_days", 0)),
-            train_days=int(row.get("train_days", 0)),
-            test_days=int(row.get("test_days", 0)),
+            min_date=str(row.get("min_date", "")),
+            max_date=str(row.get("max_date", "")),
+            avg_daily_kwh=float(row.get("avg_daily_kwh", 0)),
         ))
-    return MeterListResponse(meters=meters, total=len(meters))
+    return MeterListResponse(meters=meters, total=len(meters), groups=DATA_GROUPS)
 
 
 # ── Meter data ──────────────────────────────────────────────────────────────
@@ -72,6 +71,7 @@ def get_meter_data(meter_name: str):
 
     return MeterDataResponse(
         meter=meter_name,
+        group=str(info.get("group", "Building Genome")),
         site=str(info["site"]),
         building_type=str(info["building_type"]),
         min_date=df.index.min().strftime("%Y-%m-%d"),
@@ -184,14 +184,14 @@ def run_analysis(req: AnalysisRequest):
     coef_info = get_coefficients(pipeline, feat_cols)
     m_info = get_model_info(pipeline)
 
-    # ── Savings: Baseline Actual vs Reporting Predicted ──
-    bl_total_actual = float(df_baseline["daily_kwh"].sum())
+    # ── Savings: Reporting Actual vs Reporting Predicted (normalized) ──
+    rp_total_actual = float(np.sum(y_report))
     rp_total_predicted = float(np.sum(y_pred_report))
-    total_savings = bl_total_actual - rp_total_predicted
-    savings_pct = total_savings / bl_total_actual * 100 if bl_total_actual else 0
+    total_savings = rp_total_actual - rp_total_predicted
+    savings_pct = total_savings / rp_total_actual * 100 if rp_total_actual else 0
     savings = {
-        "baseline_total_kwh": round(bl_total_actual, 0),
-        "reporting_total_kwh": round(rp_total_predicted, 0),
+        "reporting_actual_kwh": round(rp_total_actual, 0),
+        "reporting_predicted_kwh": round(rp_total_predicted, 0),
         "total_savings_kwh": round(total_savings, 0),
         "savings_pct": round(savings_pct, 2),
     }
@@ -213,8 +213,9 @@ def run_analysis(req: AnalysisRequest):
     )
 
     # ── Reporting result ──
-    savings_daily = (y_pred_report - y_report).tolist()
-    cumulative = np.cumsum(y_pred_report - y_report).tolist()
+    # savings_daily = actual - predicted (positive = actual > predicted = excess usage)
+    savings_daily = (y_report - y_pred_report).tolist()
+    cumulative = np.cumsum(y_report - y_pred_report).tolist()
     report_points = [
         TimeSeriesPoint(
             date=d.strftime("%Y-%m-%d"),
@@ -327,14 +328,12 @@ def run_analysis(req: AnalysisRequest):
         monthly_contributions=monthly_contribs,
     )
 
-    # ── Year-over-Year: Baseline Actual vs Reporting Predicted ──
+    # ── Year-over-Year: Baseline Actual vs Reporting Actual ──
+    bl_total_actual = float(df_baseline["daily_kwh"].sum())
     bl_monthly = df_baseline.resample("ME")["daily_kwh"].sum().reset_index()
     bl_monthly["month_num"] = bl_monthly["date"].dt.month
 
-    # Use model-predicted values for reporting period
-    df_report_pred = df_report.copy()
-    df_report_pred["predicted_kwh"] = y_pred_report
-    rp_monthly = df_report_pred.resample("ME")["predicted_kwh"].sum().reset_index()
+    rp_monthly = df_report.resample("ME")["daily_kwh"].sum().reset_index()
     rp_monthly["month_num"] = rp_monthly["date"].dt.month
 
     month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -342,7 +341,7 @@ def run_analysis(req: AnalysisRequest):
     yoy_months = []
     for m in range(1, 13):
         bl_val = bl_monthly[bl_monthly["month_num"] == m]["daily_kwh"].sum()
-        rp_val = rp_monthly[rp_monthly["month_num"] == m]["predicted_kwh"].sum()
+        rp_val = rp_monthly[rp_monthly["month_num"] == m]["daily_kwh"].sum()
 
         bl_v = round(float(bl_val), 0) if bl_val > 0 else None
         rp_v = round(float(rp_val), 0) if rp_val > 0 else None
@@ -354,51 +353,53 @@ def run_analysis(req: AnalysisRequest):
             month=month_names[m - 1],
             month_num=m,
             baseline_actual=bl_v,
-            reporting_predicted=rp_v,
+            reporting_actual=rp_v,
             savings_kwh=sav,
             savings_pct=sav_pct,
         ))
 
-    # Totals
+    yoy_savings = bl_total_actual - rp_total_actual
+    yoy_pct = yoy_savings / bl_total_actual * 100 if bl_total_actual else 0
     yoy_totals = {
         "baseline_actual": round(bl_total_actual, 0),
-        "reporting_predicted": round(rp_total_predicted, 0),
-        "savings_kwh": round(total_savings, 0),
-        "savings_pct": round(savings_pct, 1),
+        "reporting_actual": round(rp_total_actual, 0),
+        "savings_kwh": round(yoy_savings, 0),
+        "savings_pct": round(yoy_pct, 1),
     }
 
     yoy_result = YoYResult(months=yoy_months, totals=yoy_totals)
 
-    # ── Monthly Savings: Baseline Actual vs Reporting Predicted by month ──
-    bl_month_agg = df_baseline.copy()
-    bl_month_agg["month_num"] = bl_month_agg.index.month
-    bl_month_agg = bl_month_agg.groupby("month_num")["daily_kwh"].sum()
+    # ── Monthly Savings: Reporting Actual vs Reporting Predicted (normalized) ──
+    rp_month_actual = df_report.copy()
+    rp_month_actual["month_num"] = rp_month_actual.index.month
+    rp_month_actual_agg = rp_month_actual.groupby("month_num")["daily_kwh"].sum()
 
-    rp_month_agg = df_report.copy()
-    rp_month_agg["predicted_kwh"] = y_pred_report
-    rp_month_agg["month_num"] = rp_month_agg.index.month
-    rp_month_agg = rp_month_agg.groupby("month_num")["predicted_kwh"].sum()
+    rp_month_pred = df_report.copy()
+    rp_month_pred["predicted_kwh"] = y_pred_report
+    rp_month_pred["month_num"] = rp_month_pred.index.month
+    rp_month_pred_agg = rp_month_pred.groupby("month_num")["predicted_kwh"].sum()
 
     month_names_short = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     monthly_savings_rows = []
     for m in range(1, 13):
-        bl_kwh = float(bl_month_agg.get(m, 0))
-        rp_kwh = float(rp_month_agg.get(m, 0))
-        if bl_kwh == 0 and rp_kwh == 0:
+        actual_kwh = float(rp_month_actual_agg.get(m, 0))
+        pred_kwh = float(rp_month_pred_agg.get(m, 0))
+        if actual_kwh == 0 and pred_kwh == 0:
             continue
-        sav = bl_kwh - rp_kwh
-        sav_pct = sav / bl_kwh * 100 if bl_kwh else 0
+        sav = actual_kwh - pred_kwh
+        sav_pct = sav / actual_kwh * 100 if actual_kwh else 0
         monthly_savings_rows.append(MonthlySavingsRow(
             month=month_names_short[m - 1],
-            predicted=round(rp_kwh, 0),
-            baseline=round(bl_kwh, 0),
+            actual=round(actual_kwh, 0),
+            predicted=round(pred_kwh, 0),
             savings=round(sav, 0),
             savings_pct=round(sav_pct, 1),
         ))
 
     return AnalysisResponse(
         meter=req.meter,
+        group=str(meter_row.get("group", "Building Genome")),
         site=str(meter_row["site"]),
         building_type=str(meter_row["building_type"]),
         model_info=m_info,

@@ -10,19 +10,19 @@ from typing import Optional
 
 class MeterInfo(BaseModel):
     meter: str
+    group: str
     site: str
     building_type: str
-    lat: Optional[float] = None
-    lng: Optional[float] = None
-    timezone: Optional[str] = None
     total_days: int
-    train_days: int
-    test_days: int
+    min_date: str = ""
+    max_date: str = ""
+    avg_daily_kwh: float = 0
 
 
 class MeterListResponse(BaseModel):
     meters: list[MeterInfo]
     total: int
+    groups: list[str]
 
 
 class MeterDataPoint(BaseModel):
@@ -32,6 +32,7 @@ class MeterDataPoint(BaseModel):
 
 class MeterDataResponse(BaseModel):
     meter: str
+    group: str
     site: str
     building_type: str
     min_date: str
@@ -112,11 +113,12 @@ class DriverResult(BaseModel):
     monthly_contributions: list[MonthlyContribution]
 
 
+# YoY: Baseline Actual vs Reporting Actual (direct DB comparison)
 class YoYMonth(BaseModel):
     month: str
     month_num: int
     baseline_actual: Optional[float] = None
-    reporting_predicted: Optional[float] = None
+    reporting_actual: Optional[float] = None
     savings_kwh: Optional[float] = None
     savings_pct: Optional[float] = None
 
@@ -126,11 +128,12 @@ class YoYResult(BaseModel):
     totals: dict
 
 
+# Monthly: Reporting Actual vs Reporting Predicted (normalized comparison)
 class MonthlySavingsRow(BaseModel):
     month: str
-    predicted: float
-    baseline: float
-    savings: float
+    actual: float      # actual usage from DB in reporting period
+    predicted: float   # model-predicted (normalized) usage
+    savings: float     # actual - predicted
     savings_pct: float
 
 
@@ -138,6 +141,7 @@ class AnalysisResponse(BaseModel):
     model_config = {"protected_namespaces": ()}
 
     meter: str
+    group: str
     site: str
     building_type: str
     model_info: dict

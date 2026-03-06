@@ -14,6 +14,10 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 TRAIN_DIR = DATA_DIR / "training"
 TEST_DIR = DATA_DIR / "testing"
+SG_DIR = DATA_DIR / "sg"
+ECD_DIR = DATA_DIR / "ecd"
+
+DATA_GROUPS = ["Building Genome", "Saint-Gobain", "ECD"]
 
 # ============================================================================
 # FEATURE DEFINITIONS

@@ -1,16 +1,36 @@
-meter,site,building_type,lat,lng,timezone,total_days,train_days,test_days
-Bear_education_Leonel,Bear,education,37.87190340000004,-122.26072860000008,US/Pacific,731,366,365
-Bear_public_Jocelyn,Bear,public,37.87190340000004,-122.26072860000008,US/Pacific,731,366,365
-Fox_education_Andre,Fox,education,33.42442530000004,-111.9281403999998,US/Mountain,731,366,365
-Fox_lodging_Alana,Fox,lodging,33.42442530000004,-111.9281403999998,US/Mountain,731,366,365
-Fox_office_Alice,Fox,office,33.42442530000004,-111.9281403999998,US/Mountain,731,366,365
-Hog_education_Beth,Hog,education,44.97878184783975,-93.2553976421019,US/Central,731,366,365
-Hog_lodging_Brian,Hog,lodging,44.97878184783975,-93.2553976421019,US/Central,731,366,365
-Hog_office_Alexis,Hog,office,44.97878184783975,-93.2553976421019,US/Central,731,366,365
-Lamb_education_Antonio,Lamb,education,51.49783804108846,-3.186245571244898,Europe/London,731,366,365
-Lamb_office_Bertha,Lamb,office,51.49783804108846,-3.186245571244898,Europe/London,731,366,365
-Peacock_education_Anita,Peacock,education,40.349999999999966,-74.69999999999995,US/Eastern,731,366,365
-Peacock_office_Annie,Peacock,office,40.349999999999966,-74.69999999999995,US/Eastern,731,366,365
-Robin_education_Audrea,Robin,education,51.51878965384613,-0.1345562307692307,Europe/London,731,366,365
-Robin_office_Addie,Robin,office,51.51878965384613,-0.1345562307692307,Europe/London,731,366,365
-Wolf_education_Bobby,Wolf,education,53.34979999999997,6.2603,Europe/Dublin,731,366,365
+meter,group,site,building_type,total_days,min_date,max_date,avg_daily_kwh
+Bear_education_Leonel,Building Genome,Bear,education,731,2016-01-01,2017-12-31,2851.2
+Bear_public_Jocelyn,Building Genome,Bear,public,731,2016-01-01,2017-12-31,1167.4
+Fox_education_Andre,Building Genome,Fox,education,731,2016-01-01,2017-12-31,10909.4
+Fox_lodging_Alana,Building Genome,Fox,lodging,731,2016-01-01,2017-12-31,4841.7
+Fox_office_Alice,Building Genome,Fox,office,731,2016-01-01,2017-12-31,8655.8
+Hog_education_Beth,Building Genome,Hog,education,731,2016-01-01,2017-12-31,2582.9
+Hog_lodging_Brian,Building Genome,Hog,lodging,731,2016-01-01,2017-12-31,2532.0
+Hog_office_Alexis,Building Genome,Hog,office,731,2016-01-01,2017-12-31,467.1
+Lamb_education_Antonio,Building Genome,Lamb,education,731,2016-01-01,2017-12-31,931.8
+Lamb_office_Bertha,Building Genome,Lamb,office,731,2016-01-01,2017-12-31,1182.5
+Peacock_education_Anita,Building Genome,Peacock,education,731,2016-01-01,2017-12-31,277.1
+Peacock_office_Annie,Building Genome,Peacock,office,731,2016-01-01,2017-12-31,1837.1
+Robin_education_Audrea,Building Genome,Robin,education,731,2016-01-01,2017-12-31,6884.3
+Robin_office_Addie,Building Genome,Robin,office,731,2016-01-01,2017-12-31,492.9
+Wolf_education_Bobby,Building Genome,Wolf,education,731,2016-01-01,2017-12-31,2337.8
+SG_equip_01,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,802.4
+SG_equip_02,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,734.4
+SG_equip_03,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,703.3
+SG_equip_04,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,697.5
+SG_equip_05,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,497.8
+SG_equip_06,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,495.0
+SG_equip_07,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,376.5
+SG_equip_08,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,368.9
+SG_equip_09,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,318.9
+SG_equip_10,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,309.1
+ECD_equip_01,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,60032.4
+ECD_equip_02,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,3767.4
+ECD_equip_03,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,2824.5
+ECD_equip_04,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,2098.2
+ECD_equip_05,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,646.7
+ECD_equip_06,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,639.8
+ECD_equip_07,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,632.0
+ECD_equip_08,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,631.6
+ECD_equip_09,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,628.2
+ECD_equip_10,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,529.3

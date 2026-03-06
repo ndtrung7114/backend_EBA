@@ -46,8 +46,9 @@ class AnalysisRequest(BaseModel):
     meter: str
     rp_start: str  # YYYY-MM-DD
     rp_end: str
-    bl_start: str  # Baseline is mandatory
-    bl_end: str
+    baseline_enabled: bool = False
+    bl_start: Optional[str] = None
+    bl_end: Optional[str] = None
     tr_start: Optional[str] = None
     tr_end: Optional[str] = None
     training_mode: str = "all"  # "all" | "custom" | "sync_baseline"
@@ -147,10 +148,10 @@ class AnalysisResponse(BaseModel):
     model_info: dict
     training: TrainingResult
     reporting: ReportingResult
-    baseline: BaselineResult
+    baseline: Optional[BaselineResult] = None
     savings: dict
     formula: FormulaResult
     drivers: DriverResult
-    yoy: YoYResult
+    yoy: Optional[YoYResult] = None
     monthly_savings: list[MonthlySavingsRow]
     features_used: list[str]

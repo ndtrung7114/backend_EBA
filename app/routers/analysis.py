@@ -156,15 +156,17 @@ def run_analysis(req: AnalysisRequest):
     if len(df_report) < 1:
         raise HTTPException(400, "No reporting data in selected period")
 
-    # ── Baseline data (mandatory) ──
-    bl_start_dt = pd.to_datetime(req.bl_start)
-    bl_end_dt = pd.to_datetime(req.bl_end)
-    if bl_start_dt >= bl_end_dt:
-        raise HTTPException(400, "Baseline start must be before end")
-    bl_mask = (df.index >= bl_start_dt) & (df.index <= bl_end_dt)
-    df_baseline = df[bl_mask].copy()
-    if len(df_baseline) < 1:
-        raise HTTPException(400, "No baseline data in selected period")
+    # ── Baseline data (optional) ──
+    df_baseline = None
+    if req.baseline_enabled and req.bl_start and req.bl_end:
+        bl_start_dt = pd.to_datetime(req.bl_start)
+        bl_end_dt = pd.to_datetime(req.bl_end)
+        if bl_start_dt >= bl_end_dt:
+            raise HTTPException(400, "Baseline start must be before end")
+        bl_mask = (df.index >= bl_start_dt) & (df.index <= bl_end_dt)
+        df_baseline = df[bl_mask].copy()
+        if len(df_baseline) < 1:
+            raise HTTPException(400, "No baseline data in selected period")
 
     # ── Train model ──
     X_train = df_train[feat_cols].values
@@ -233,18 +235,20 @@ def run_analysis(req: AnalysisRequest):
     )
 
     # ── Baseline result ──
-    X_bl = df_baseline[feat_cols].values
-    y_bl = df_baseline["daily_kwh"].values
-    y_pred_bl = predict(pipeline, X_bl)
-    bl_points = [
-        TimeSeriesPoint(
-            date=d.strftime("%Y-%m-%d"),
-            actual=round(float(a), 2),
-            predicted=round(float(p), 2),
-        )
-        for d, a, p in zip(df_baseline.index, y_bl, y_pred_bl)
-    ]
-    baseline_result = BaselineResult(days=len(df_baseline), data=bl_points)
+    baseline_result = None
+    if df_baseline is not None:
+        X_bl = df_baseline[feat_cols].values
+        y_bl = df_baseline["daily_kwh"].values
+        y_pred_bl = predict(pipeline, X_bl)
+        bl_points = [
+            TimeSeriesPoint(
+                date=d.strftime("%Y-%m-%d"),
+                actual=round(float(a), 2),
+                predicted=round(float(p), 2),
+            )
+            for d, a, p in zip(df_baseline.index, y_bl, y_pred_bl)
+        ]
+        baseline_result = BaselineResult(days=len(df_baseline), data=bl_points)
 
     # ── Formula ──
     orig_formula = get_original_scale_formula(
@@ -329,45 +333,47 @@ def run_analysis(req: AnalysisRequest):
     )
 
     # ── Year-over-Year: Baseline Actual vs Reporting Actual ──
-    bl_total_actual = float(df_baseline["daily_kwh"].sum())
-    bl_monthly = df_baseline.resample("ME")["daily_kwh"].sum().reset_index()
-    bl_monthly["month_num"] = bl_monthly["date"].dt.month
+    yoy_result = None
+    if df_baseline is not None:
+        bl_total_actual = float(df_baseline["daily_kwh"].sum())
+        bl_monthly = df_baseline.resample("ME")["daily_kwh"].sum().reset_index()
+        bl_monthly["month_num"] = bl_monthly["date"].dt.month
 
-    rp_monthly = df_report.resample("ME")["daily_kwh"].sum().reset_index()
-    rp_monthly["month_num"] = rp_monthly["date"].dt.month
+        rp_monthly = df_report.resample("ME")["daily_kwh"].sum().reset_index()
+        rp_monthly["month_num"] = rp_monthly["date"].dt.month
 
-    month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    yoy_months = []
-    for m in range(1, 13):
-        bl_val = bl_monthly[bl_monthly["month_num"] == m]["daily_kwh"].sum()
-        rp_val = rp_monthly[rp_monthly["month_num"] == m]["daily_kwh"].sum()
+        month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        yoy_months = []
+        for m in range(1, 13):
+            bl_val = bl_monthly[bl_monthly["month_num"] == m]["daily_kwh"].sum()
+            rp_val = rp_monthly[rp_monthly["month_num"] == m]["daily_kwh"].sum()
 
-        bl_v = round(float(bl_val), 0) if bl_val > 0 else None
-        rp_v = round(float(rp_val), 0) if rp_val > 0 else None
+            bl_v = round(float(bl_val), 0) if bl_val > 0 else None
+            rp_v = round(float(rp_val), 0) if rp_val > 0 else None
 
-        sav = round(bl_v - rp_v, 0) if (bl_v and rp_v) else None
-        sav_pct = round(sav / bl_v * 100, 1) if (sav is not None and bl_v) else None
+            sav = round(bl_v - rp_v, 0) if (bl_v and rp_v) else None
+            sav_pct = round(sav / bl_v * 100, 1) if (sav is not None and bl_v) else None
 
-        yoy_months.append(YoYMonth(
-            month=month_names[m - 1],
-            month_num=m,
-            baseline_actual=bl_v,
-            reporting_actual=rp_v,
-            savings_kwh=sav,
-            savings_pct=sav_pct,
-        ))
+            yoy_months.append(YoYMonth(
+                month=month_names[m - 1],
+                month_num=m,
+                baseline_actual=bl_v,
+                reporting_actual=rp_v,
+                savings_kwh=sav,
+                savings_pct=sav_pct,
+            ))
 
-    yoy_savings = bl_total_actual - rp_total_actual
-    yoy_pct = yoy_savings / bl_total_actual * 100 if bl_total_actual else 0
-    yoy_totals = {
-        "baseline_actual": round(bl_total_actual, 0),
-        "reporting_actual": round(rp_total_actual, 0),
-        "savings_kwh": round(yoy_savings, 0),
-        "savings_pct": round(yoy_pct, 1),
-    }
+        yoy_savings = bl_total_actual - rp_total_actual
+        yoy_pct = yoy_savings / bl_total_actual * 100 if bl_total_actual else 0
+        yoy_totals = {
+            "baseline_actual": round(bl_total_actual, 0),
+            "reporting_actual": round(rp_total_actual, 0),
+            "savings_kwh": round(yoy_savings, 0),
+            "savings_pct": round(yoy_pct, 1),
+        }
 
-    yoy_result = YoYResult(months=yoy_months, totals=yoy_totals)
+        yoy_result = YoYResult(months=yoy_months, totals=yoy_totals)
 
     # ── Monthly Savings: Reporting Actual vs Reporting Predicted (normalized) ──
     rp_month_actual = df_report.copy()

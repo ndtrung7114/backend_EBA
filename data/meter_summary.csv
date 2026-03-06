@@ -14,23 +14,23 @@ Peacock_office_Annie,Building Genome,Peacock,office,731,2016-01-01,2017-12-31,18
 Robin_education_Audrea,Building Genome,Robin,education,731,2016-01-01,2017-12-31,6884.3
 Robin_office_Addie,Building Genome,Robin,office,731,2016-01-01,2017-12-31,492.9
 Wolf_education_Bobby,Building Genome,Wolf,education,731,2016-01-01,2017-12-31,2337.8
-SG_equip_01,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,802.4
-SG_equip_02,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,734.4
-SG_equip_03,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,703.3
-SG_equip_04,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,697.5
-SG_equip_05,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,497.8
-SG_equip_06,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,495.0
-SG_equip_07,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,376.5
-SG_equip_08,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,368.9
-SG_equip_09,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,318.9
-SG_equip_10,Saint-Gobain,Shanghai,industrial,1569,2020-07-06,2024-10-21,309.1
-ECD_equip_01,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,60032.4
-ECD_equip_02,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,3767.4
-ECD_equip_03,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,2824.5
-ECD_equip_04,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,2098.2
-ECD_equip_05,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,646.7
-ECD_equip_06,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,639.8
-ECD_equip_07,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,632.0
-ECD_equip_08,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,631.6
-ECD_equip_09,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,628.2
-ECD_equip_10,ECD,ec8469,commercial,400,2025-01-01,2026-02-04,529.3
+SG_equip_01,Saint-Gobain,Shanghai,Factory,1568,2020-07-07,2024-10-21,192.49
+SG_equip_02,Saint-Gobain,Shanghai,Factory,1569,2020-07-06,2024-10-21,118.9
+SG_equip_03,Saint-Gobain,Shanghai,Factory,1569,2020-07-06,2024-10-21,264.83
+SG_equip_04,Saint-Gobain,Shanghai,Factory,1569,2020-07-06,2024-10-21,260.05
+SG_equip_05,Saint-Gobain,Shanghai,Factory,1569,2020-07-06,2024-10-21,2.86
+SG_equip_06,Saint-Gobain,Shanghai,Factory,1569,2020-07-06,2024-10-21,72.0
+SG_equip_07,Saint-Gobain,Shanghai,Factory,1569,2020-07-06,2024-10-21,1.74
+SG_equip_08,Saint-Gobain,Shanghai,Factory,1569,2020-07-06,2024-10-21,69.23
+SG_equip_09,Saint-Gobain,Shanghai,Factory,1569,2020-07-06,2024-10-21,185.59
+SG_equip_10,Saint-Gobain,Shanghai,Factory,1569,2020-07-06,2024-10-21,494.96
+ECD_equip_01,ECD,EC8469,Commercial,400,2025-01-01,2026-02-04,53.01
+ECD_equip_02,ECD,EC8469,Commercial,400,2025-01-01,2026-02-04,28.55
+ECD_equip_03,ECD,EC8469,Commercial,400,2025-01-01,2026-02-04,18.39
+ECD_equip_04,ECD,EC8469,Commercial,400,2025-01-01,2026-02-04,518.2
+ECD_equip_05,ECD,EC8469,Commercial,400,2025-01-01,2026-02-04,38.57
+ECD_equip_06,ECD,EC8469,Commercial,400,2025-01-01,2026-02-04,179.87
+ECD_equip_07,ECD,EC8469,Commercial,400,2025-01-01,2026-02-04,240.61
+ECD_equip_08,ECD,EC8469,Commercial,399,2025-01-01,2026-02-03,1.11
+ECD_equip_09,ECD,EC8469,Commercial,399,2025-01-01,2026-02-03,1.1
+ECD_equip_10,ECD,EC8469,Commercial,400,2025-01-01,2026-02-04,47.57

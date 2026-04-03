@@ -16,8 +16,9 @@ TRAIN_DIR = DATA_DIR / "training"
 TEST_DIR = DATA_DIR / "testing"
 SG_DIR = DATA_DIR / "sg"
 ECD_DIR = DATA_DIR / "ecd"
+IKEA_DIR = DATA_DIR / "ikea"
 
-DATA_GROUPS = ["Building Genome", "Saint-Gobain", "ECD"]
+DATA_GROUPS = ["Building Genome", "Saint-Gobain", "ECD", "IKEA"]
 
 # ============================================================================
 # FEATURE DEFINITIONS

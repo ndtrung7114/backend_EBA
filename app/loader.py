@@ -6,7 +6,7 @@ Supports three data groups: Building Genome, Saint-Gobain, ECD.
 """
 
 import pandas as pd
-from app.config import DATA_DIR, TRAIN_DIR, TEST_DIR, SG_DIR, ECD_DIR
+from app.config import DATA_DIR, TRAIN_DIR, TEST_DIR, SG_DIR, ECD_DIR, IKEA_DIR
 
 
 def load_meter_summary() -> pd.DataFrame:
@@ -21,6 +21,8 @@ def _get_meter_group(meter_name: str) -> str:
         return "Saint-Gobain"
     elif meter_name.startswith("ECD_"):
         return "ECD"
+    elif meter_name.startswith("IKEA_"):
+        return "IKEA"
     return "Building Genome"
 
 
@@ -49,6 +51,9 @@ def load_meter_combined(meter_name: str) -> pd.DataFrame:
         df = pd.read_csv(path, parse_dates=["date"], index_col="date")
     elif group == "ECD":
         path = ECD_DIR / f"{meter_name}.csv"
+        df = pd.read_csv(path, parse_dates=["date"], index_col="date")
+    elif group == "IKEA":
+        path = IKEA_DIR / f"{meter_name}.csv"
         df = pd.read_csv(path, parse_dates=["date"], index_col="date")
     else:
         # Building Genome: combine train + test

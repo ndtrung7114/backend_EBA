@@ -9,7 +9,7 @@ from sklearn.linear_model import ElasticNetCV
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 
-from app.config import RANDOM_STATE, CV_FOLDS
+from app.config import RANDOM_STATE, CV_FOLDS, MIN_ENERGY_KWH
 
 
 def build_pipeline() -> Pipeline:
@@ -32,7 +32,7 @@ def train_model(pipeline: Pipeline, X_train: np.ndarray, y_train: np.ndarray) ->
 
 
 def predict(pipeline: Pipeline, X: np.ndarray) -> np.ndarray:
-    return pipeline.predict(X)
+    return np.maximum(pipeline.predict(X), MIN_ENERGY_KWH)
 
 
 def get_coefficients(pipeline: Pipeline, feature_names: list[str]) -> dict:

@@ -107,6 +107,13 @@ def run_analysis(req: AnalysisRequest):
     meter_row = summary[summary["meter"] == req.meter].iloc[0]
     df = load_meter_combined(req.meter)
 
+    # Use interpolated values as the target if requested
+    if req.use_interpolated:
+        if "interpolated_value" not in df.columns:
+            raise HTTPException(400, f"Meter '{req.meter}' has no interpolated_value column")
+        df = df.copy()
+        df["daily_kwh"] = df["interpolated_value"]
+
     min_date = df.index.min()
     max_date = df.index.max()
     rp_start = pd.to_datetime(req.rp_start)

@@ -55,6 +55,7 @@ class AnalysisRequest(BaseModel):
     features: Optional[list[str]] = None
     use_iqr: bool = True
     iqr_k: float = Field(default=1.5, ge=1.0, le=3.0)
+    use_interpolated: bool = False
 
 
 class TimeSeriesPoint(BaseModel):

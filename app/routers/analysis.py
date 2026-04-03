@@ -383,27 +383,20 @@ def run_analysis(req: AnalysisRequest):
         yoy_result = YoYResult(months=yoy_months, totals=yoy_totals)
 
     # ── Monthly Savings: Reporting Actual vs Reporting Predicted (normalized) ──
-    rp_month_actual = df_report.copy()
-    rp_month_actual["month_num"] = rp_month_actual.index.month
-    rp_month_actual_agg = rp_month_actual.groupby("month_num")["daily_kwh"].sum()
+    # Use resample by month-end to preserve chronological order across year boundaries.
+    rp_actual_monthly = df_report["daily_kwh"].resample("ME").sum()
+    rp_pred_monthly = pd.Series(y_pred_report, index=df_report.index).resample("ME").sum()
 
-    rp_month_pred = df_report.copy()
-    rp_month_pred["predicted_kwh"] = y_pred_report
-    rp_month_pred["month_num"] = rp_month_pred.index.month
-    rp_month_pred_agg = rp_month_pred.groupby("month_num")["predicted_kwh"].sum()
-
-    month_names_short = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     monthly_savings_rows = []
-    for m in range(1, 13):
-        actual_kwh = float(rp_month_actual_agg.get(m, 0))
-        pred_kwh = float(rp_month_pred_agg.get(m, 0))
+    for period in rp_actual_monthly.index:
+        actual_kwh = float(rp_actual_monthly[period])
+        pred_kwh = float(rp_pred_monthly.get(period, 0))
         if actual_kwh == 0 and pred_kwh == 0:
             continue
         sav = actual_kwh - pred_kwh
         sav_pct = sav / actual_kwh * 100 if actual_kwh else 0
         monthly_savings_rows.append(MonthlySavingsRow(
-            month=month_names_short[m - 1],
+            month=period.strftime("%Y-%m"),   # "2024-11" — frontend formats for display
             actual=round(actual_kwh, 0),
             predicted=round(pred_kwh, 0),
             savings=round(sav, 0),
